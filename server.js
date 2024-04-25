@@ -60,7 +60,8 @@ app.get('/get_items', (req, res) => {
 });
 
 app.post('/add_to_shopping_cart', (req, res) => {
-  const { session_id, item, quantity } = req.body;
+  const session_id = req.params;
+  const { item, quantity } = req.body;
 
   if (!session_id) {
     return res.status(400).json({ message: 'Missing session_id' });
@@ -76,7 +77,8 @@ app.post('/add_to_shopping_cart', (req, res) => {
 });
 
 app.post('/remove_from_shopping_cart', (req, res) => {
-  const { session_id, item, quantity } = req.body;
+  const session_id = req.params;
+  const { item, quantity } = req.body;
 
   if (!session_id) {
     return res.status(400).json({ message: 'Missing session_id' });
@@ -92,7 +94,7 @@ app.post('/remove_from_shopping_cart', (req, res) => {
 });
 
 app.post('/view_shopping_cart', (req, res) => {
-  const { session_id } = req.body;
+  const { session_id } = req.params;
 
   if (!session_id) {
     return res.status(400).json({ message: 'Missing session_id' });
@@ -108,7 +110,7 @@ app.post('/view_shopping_cart', (req, res) => {
 });
 
 app.post('/place_order', (req, res) => {
-  const { session_id } = req.body;
+  const { session_id } = req.params;
 
   if (!session_id) {
     return res.status(400).json({ message: 'Missing session_id' });
