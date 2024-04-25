@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 // Replace with your actual logic to retrieve items from Google Store
-function getItemsFromStore(sessionId, item) {
+function getItemsFromStore() {
   // Implement logic to fetch items based on session_id and item (possibly empty)
   // This could involve database queries, API calls, etc.
   // Replace with your actual implementation
@@ -47,15 +47,11 @@ function placeOrder(sessionId) {
   return orderItems;
 }
 
-app.post('/get_items', (req, res) => {
-  const { session_id, item } = req.body;
-
-  if (!session_id) {
-    return res.status(400).json({ message: 'Missing session_id' });
-  }
+app.get('/get_items', (req, res) => {
+  // const { session_id, item } = req.body;
 
   try {
-    const results = getItemsFromStore(session_id, item);
+    const results = getItemsFromStore();
     res.json({ results });
   } catch (error) {
     console.error(error);
